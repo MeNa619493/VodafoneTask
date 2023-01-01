@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_title_paddingStart">-25dp</dimen>
+    <dimen name="toolbar_title_text_size">24sp</dimen>
+    <dimen name="airline_title_text">20sp</dimen>
+    <dimen name="airline_slogan_text">16sp</dimen>
+    <dimen name="airline_headQuaters_text">14sp</dimen>
+    <dimen name="airline_headQuaters_text_details">16sp</dimen>
+</resources>
