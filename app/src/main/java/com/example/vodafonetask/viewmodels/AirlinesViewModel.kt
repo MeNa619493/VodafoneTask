@@ -6,14 +6,14 @@ import com.example.vodafonetask.models.Airline
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-enum class AirlineApiStatus { LOADING, ERROR, DONE }
+enum class AirlineApiStatus { LOADING, ERROR, SUCCESS }
 
 class AirlinesViewModel(private val repository: Repository) : ViewModel() {
     private val _status = MutableLiveData<AirlineApiStatus>()
     val status: LiveData<AirlineApiStatus>
         get() = _status
 
-    private var _airlineList = repository.getAllAirlines().asLiveData()
+    private var _airlineList = repository.getAllAirlines().asLiveData(Dispatchers.IO)
     val airlineList: LiveData<List<Airline>>
         get() = _airlineList
 
@@ -26,7 +26,7 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
             _status.postValue(AirlineApiStatus.LOADING)
             try {
                 repository.refreshAirlines()
-                _status.postValue(AirlineApiStatus.DONE)
+                _status.postValue(AirlineApiStatus.SUCCESS)
             } catch (e: Exception) {
                 _status.postValue(AirlineApiStatus.ERROR)
                 println("Exception getting data from airlines api: $e.message")

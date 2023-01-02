@@ -88,11 +88,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
-                android:textSize="@dimen/airline_slogan_text"
                 android:textColor="@color/airline_detail_title"
-                app:layout_constraintEnd_toEndOf="@+id/tv_airline_country"
+                android:textSize="@dimen/airline_slogan_text"
+                app:layout_constraintEnd_toEndOf="@+id/tv_airline_title"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_airline_country"
+                app:layout_constraintStart_toStartOf="@+id/tv_airline_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_airline_country" />
 
             <TextView
@@ -101,12 +101,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/headquarters"
+                android:textColor="@color/airline_detail_title"
                 android:textSize="@dimen/airline_headQuaters_text"
                 android:textStyle="bold"
-                android:textColor="@color/airline_detail_title"
-                app:layout_constraintEnd_toEndOf="@+id/tv_airline_slogan"
+                app:layout_constraintEnd_toEndOf="@+id/tv_airline_title"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_airline_slogan"
+                app:layout_constraintStart_toStartOf="@+id/tv_airline_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_airline_slogan" />
 
             <TextView

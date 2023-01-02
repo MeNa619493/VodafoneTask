@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -30,20 +31,25 @@ class AirlineDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAirlineDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupActionBar()
         airline = AirlineDetailsFragmentArgs.fromBundle(requireArguments()).airline
-        setupCardView(airline)
+        setupCardView()
         setupBackButton()
         setupVisitButton()
         observeNavigationEvent()
-        return binding.root
+        observeShowToastEvent()
     }
 
     private fun setupActionBar() {
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbarAirlineDetailFragment)
     }
 
-    private fun setupCardView(airline: Airline) {
+    private fun setupCardView() {
         binding.tvAirlineTitle.text = airline.name
         binding.tvAirlineCountry.text = airline.country
         binding.tvAirlineSlogan.text = airline.slogan
@@ -58,7 +64,13 @@ class AirlineDetailsFragment : Fragment() {
 
     private fun setupVisitButton() {
         binding.btnVisit.setOnClickListener {
-            viewModel.openWebViewFragment()
+            airline.website?.let {
+                if (viewModel.isWebsiteLinkValid(it)) {
+                    viewModel.openWebViewFragment()
+                } else {
+                    viewModel.showURLNotValidToast()
+                }
+            }
         }
     }
 
@@ -69,6 +81,15 @@ class AirlineDetailsFragment : Fragment() {
                     findNavController().navigate(AirlineDetailsFragmentDirections.actionAirlineDetailsFragmentToWebFragment(it))
                     viewModel.doneNavigating()
                 }
+            }
+        }
+    }
+
+    private fun observeShowToastEvent() {
+        viewModel.showToastEvent.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(requireActivity(),"The website link is not valid!", Toast.LENGTH_SHORT).show()
+                viewModel.doneShowingURLNotValidToast()
             }
         }
     }

@@ -35,11 +35,17 @@ class AirlinesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAirlinesBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupActionBar()
         observeCachingStatus()
+        setupRecyclerView()
         observeAirlinesList()
         observeNavigationEvent()
-        return binding.root
     }
 
     private fun setupActionBar() {
@@ -55,7 +61,7 @@ class AirlinesFragment : Fragment() {
                 AirlineApiStatus.ERROR -> {
                     binding.statusProgressBar.visibility = View.GONE
                 }
-                AirlineApiStatus.DONE -> {
+                AirlineApiStatus.SUCCESS -> {
                     binding.statusProgressBar.visibility = View.GONE
                 }
             }
@@ -67,7 +73,7 @@ class AirlinesFragment : Fragment() {
             airlines.let {
                 if (it.isNotEmpty()){
                     binding.rvAirlinesList.visibility = View.VISIBLE
-                    setupRecyclerView()
+
                     mAdapter.submitList(it)
                 }
                 else{

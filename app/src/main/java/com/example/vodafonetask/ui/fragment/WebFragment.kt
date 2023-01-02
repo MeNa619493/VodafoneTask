@@ -24,14 +24,23 @@ class WebFragment : Fragment() {
     ): View? {
         _binding = FragmentWebBinding.inflate(inflater, container, false)
 
-        binding.airlineWebView.webViewClient = object : WebViewClient() {}
-        binding.airlineWebView.settings.javaScriptEnabled = true
+        binding.airlineWebView.webViewClient = WebViewClient()
         val websiteUrl: String = WebFragmentArgs.fromBundle(requireArguments()).website
         Log.d("WebFragment", "https://$websiteUrl")
-        
-        binding.airlineWebView.loadUrl(websiteUrl)
+        binding.airlineWebView.loadUrl(setWebsiteUrlString(websiteUrl))
 
         return binding.root
+    }
+
+    private fun setWebsiteUrlString(websiteString: String): String {
+        var websiteUrl = websiteString
+        if (!websiteUrl.startsWith("www")) {
+            websiteUrl = "www.$websiteUrl"
+        }
+        if (!websiteUrl.startsWith("http")) {
+            websiteUrl = "https://$websiteUrl"
+        }
+        return websiteUrl
     }
 
     override fun onDestroyView() {
