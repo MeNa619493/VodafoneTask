@@ -1,4 +1,4 @@
-package com.example.vodafonetask.adapters
+package com.example.vodafonetask.ui.fragment.airlinesfragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vodafonetask.databinding.AirlineItemBinding
 import com.example.vodafonetask.models.Airline
 
-class AirlinesAdapter(private val clickListener: AirlineClickListener) : ListAdapter<Airline, AirlinesAdapter.MyViewHolder>(AirlineDiffCallback()) {
+class AirlinesAdapter(private val clickListener: AirlineClickListener) : ListAdapter<Airline, AirlinesAdapter.MyViewHolder>(
+    AirlineDiffCallback()
+) {
 
     class MyViewHolder(private val binding: AirlineItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

@@ -1,9 +1,11 @@
-package com.example.vodafonetask.viewmodels
+package com.example.vodafonetask.ui.fragment.airlinesfragment
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vodafonetask.data.Repository
 import com.example.vodafonetask.models.Airline
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 enum class AirlineApiStatus { LOADING, ERROR, SUCCESS }
@@ -22,7 +24,7 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
         get() = _navigateToDetailFragmentEvent
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             _status.postValue(AirlineApiStatus.LOADING)
             try {
                 repository.refreshAirlines()
@@ -40,6 +42,20 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
 
     fun doneNavigating() {
         _navigateToDetailFragmentEvent.value = null
+    }
+
+    fun search(text: String): LiveData<List<Airline>> {
+         val searchString = text.trim { it <= ' ' }
+
+        return repository.getAllAirlines().map {
+            it.filter { item ->
+                if (item.name != null) {
+                    item.name.lowercase().contains(searchString.lowercase())
+                } else {
+                    false
+                }
+            }
+        }.asLiveData(Dispatchers.IO)
     }
 
 }

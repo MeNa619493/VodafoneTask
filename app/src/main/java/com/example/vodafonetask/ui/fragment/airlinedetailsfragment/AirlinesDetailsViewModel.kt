@@ -1,6 +1,5 @@
-package com.example.vodafonetask.viewmodels
+package com.example.vodafonetask.ui.fragment.airlinedetailsfragment
 
-import android.provider.ContactsContract.CommonDataKinds.Website
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

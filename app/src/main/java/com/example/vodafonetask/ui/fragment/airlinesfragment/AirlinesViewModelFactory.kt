@@ -1,4 +1,4 @@
-package com.example.vodafonetask.viewmodels
+package com.example.vodafonetask.ui.fragment.airlinesfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

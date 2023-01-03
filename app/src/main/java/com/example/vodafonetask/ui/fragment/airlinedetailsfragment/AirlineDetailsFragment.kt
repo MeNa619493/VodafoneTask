@@ -1,4 +1,4 @@
-package com.example.vodafonetask.ui.fragment
+package com.example.vodafonetask.ui.fragment.airlinedetailsfragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,14 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.vodafonetask.AirlineApplication
-import com.example.vodafonetask.R
 import com.example.vodafonetask.databinding.FragmentAirlineDetailsBinding
-import com.example.vodafonetask.databinding.FragmentAirlinesBinding
 import com.example.vodafonetask.models.Airline
-import com.example.vodafonetask.viewmodels.AirlinesDetailsViewModel
-import com.example.vodafonetask.viewmodels.AirlinesViewModel
-import com.example.vodafonetask.viewmodels.AirlinesViewModelFactory
 
 
 class AirlineDetailsFragment : Fragment() {
@@ -46,7 +40,7 @@ class AirlineDetailsFragment : Fragment() {
     }
 
     private fun setupActionBar() {
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbarAirlineDetailFragment)
+        (activity as? AppCompatActivity)?.setSupportActionBar(binding.toolbarAirlineDetailFragment)
     }
 
     private fun setupCardView() {

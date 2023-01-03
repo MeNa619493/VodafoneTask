@@ -1,6 +1,8 @@
-package com.example.vodafonetask.ui.fragment
+package com.example.vodafonetask.ui.fragment.airlinesfragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vodafonetask.AirlineApplication
-import com.example.vodafonetask.adapters.AirlinesAdapter
 import com.example.vodafonetask.databinding.FragmentAirlinesBinding
-import com.example.vodafonetask.viewmodels.AirlineApiStatus
-import com.example.vodafonetask.viewmodels.AirlinesViewModel
-import com.example.vodafonetask.viewmodels.AirlinesViewModelFactory
 
 class AirlinesFragment : Fragment() {
 
@@ -35,7 +33,7 @@ class AirlinesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAirlinesBinding.inflate(inflater, container, false)
-
+        binding.etSearch.addTextChangedListener(textWatcher)
         return binding.root
     }
 
@@ -49,7 +47,7 @@ class AirlinesFragment : Fragment() {
     }
 
     private fun setupActionBar() {
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbarAirlineFragment)
+        (activity as? AppCompatActivity)?.setSupportActionBar(binding.toolbarAirlineFragment)
     }
 
     private fun observeCachingStatus() {
@@ -97,6 +95,25 @@ class AirlinesFragment : Fragment() {
                 Log.d("AirlinesFragment", "observeNavigationEvent: airline is null")
             }
         }
+    }
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            Log.d("onTextChanged", binding.etSearch.text.toString())
+            if (binding.etSearch.text.toString().trim { it <= ' ' }.isNotEmpty()) {
+                viewModel.search(binding.etSearch.text.toString()).observe(viewLifecycleOwner) {
+                    mAdapter.submitList(it)
+                }
+            } else {
+                binding.rvAirlinesList.layoutManager?.scrollToPosition(0)
+                mAdapter.submitList(viewModel.airlineList.value)
+            }
+        }
+
+        override fun afterTextChanged(s: Editable) {}
     }
 
     override fun onDestroyView() {
