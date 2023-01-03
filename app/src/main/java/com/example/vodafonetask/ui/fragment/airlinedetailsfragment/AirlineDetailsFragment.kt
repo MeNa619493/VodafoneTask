@@ -1,12 +1,14 @@
 package com.example.vodafonetask.ui.fragment.airlinedetailsfragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.vodafonetask.databinding.FragmentAirlineDetailsBinding
@@ -61,12 +63,35 @@ class AirlineDetailsFragment : Fragment() {
             airline.website?.let {
                 if (viewModel.isWebsiteLinkValid(it)) {
                     viewModel.openWebViewFragment()
+
+                    /*
+                    //make implicit intent to browser
+                    val browserIntent =
+                        Intent(Intent.ACTION_VIEW, Uri.parse(setWebsiteUrlString(it)))
+                    val browserChooserIntent =
+                        Intent.createChooser(browserIntent, "Choose browser")
+                    startActivity(browserChooserIntent)
+                     */
+
                 } else {
                     viewModel.showURLNotValidToast()
                 }
             }
         }
     }
+
+    /*
+    private fun setWebsiteUrlString(websiteString: String): String {
+        var websiteUrl = websiteString
+        if (!websiteUrl.startsWith("www")) {
+            websiteUrl = "www.$websiteUrl"
+        }
+        if (!websiteUrl.startsWith("http")) {
+            websiteUrl = "https://$websiteUrl"
+        }
+        return websiteUrl
+    }
+     */
 
     private fun observeNavigationEvent() {
         viewModel.navigateToWebViewFragmentEvent.observe(viewLifecycleOwner) { isNavigate ->
