@@ -7,27 +7,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.airlinesfragment.AirlinesFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_airline_fragment"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
+        android:layout_height="wrap_content"
+        app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_title"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingStart="@dimen/toolbar_title_paddingStart"
-            android:paddingEnd="0dp"
-            android:text="@string/title_action_bar"
-            android:textColor="@color/black"
-            android:textSize="@dimen/toolbar_title_text_size" />
+            android:layout_height="match_parent">
 
-    </androidx.appcompat.widget.Toolbar>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_airline_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingStart="@dimen/toolbar_title_paddingStart"
+                android:paddingEnd="0dp"
+                android:text="@string/title_action_bar"
+                android:textColor="@color/black"
+                android:textSize="@dimen/toolbar_title_text_size" />
+            </androidx.appcompat.widget.Toolbar>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -42,7 +55,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_airline_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_toolbar"
         android:hint="@string/search_hint">
 
         <EditText
@@ -59,7 +72,7 @@
         android:layout_width="45dp"
         android:layout_height="0dp"
         android:layout_marginEnd="20dp"
-        app:iconGravity="top"
+        app:iconGravity="textStart"
         app:icon="@drawable/search"
         android:backgroundTint="@color/red"
         app:layout_constraintBottom_toBottomOf="@+id/editText"

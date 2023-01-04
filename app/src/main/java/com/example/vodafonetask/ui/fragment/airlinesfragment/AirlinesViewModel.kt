@@ -25,12 +25,9 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            _status.postValue(AirlineApiStatus.LOADING)
             try {
                 repository.refreshAirlines()
-                _status.postValue(AirlineApiStatus.SUCCESS)
             } catch (e: Exception) {
-                _status.postValue(AirlineApiStatus.ERROR)
                 println("Exception getting data from airlines api: $e.message")
             }
         }
@@ -45,9 +42,10 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun search(text: String): LiveData<List<Airline>> {
+
          val searchString = text.trim { it <= ' ' }
 
-        return repository.getAllAirlines().map {
+        val searchList = repository.getAllAirlines().map {
             it.filter { item ->
                 if (item.name != null) {
                     item.name.lowercase().contains(searchString.lowercase())
@@ -56,6 +54,8 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
                 }
             }
         }.asLiveData(Dispatchers.IO)
+
+        return searchList
     }
 
 }
