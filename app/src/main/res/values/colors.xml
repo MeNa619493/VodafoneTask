@@ -10,4 +10,5 @@
     <color name="red">#E60000</color>
     <color name="background">#F4F4F4</color>
     <color name="airline_detail_title">#333333</color>
+    <color name="grey_700">#cccccc</color>
 </resources>

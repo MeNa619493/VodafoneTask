@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:context=".ui.fragment.airlinesfragment.bottomsheet.BottomSheetFragment">
+
+    <TextView
+        android:id="@+id/tv_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/bottom_sheet_title"
+        android:textSize="20sp"
+        android:textColor="@color/airline_detail_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:hint="@string/lbl_name"
+        app:hintTextColor="@color/grey_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_tittle"
+        app:layout_constraintTop_toBottomOf="@id/tv_tittle">
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:inputType="text"
+            android:textColor="@color/airline_detail_title"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_slogan"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/lbl_slogan"
+        app:hintTextColor="@color/grey_700"
+        app:layout_constraintEnd_toEndOf="@+id/til_title"
+        app:layout_constraintStart_toStartOf="@+id/til_title"
+        app:layout_constraintTop_toBottomOf="@id/til_title">
+
+        <EditText
+            android:id="@+id/et_slogan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:inputType="text"
+            android:textColor="@color/airline_detail_title"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_country"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/lbl_country"
+        app:hintTextColor="@color/grey_700"
+        app:layout_constraintEnd_toEndOf="@+id/til_slogan"
+        app:layout_constraintStart_toStartOf="@+id/til_slogan"
+        app:layout_constraintTop_toBottomOf="@id/til_slogan">
+
+        <EditText
+            android:id="@+id/et_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:inputType="text"
+            android:textColor="@color/airline_detail_title"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_head_quaters"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/lbl_head_quaters"
+        app:hintTextColor="@color/grey_700"
+        app:layout_constraintEnd_toEndOf="@+id/til_country"
+        app:layout_constraintStart_toStartOf="@+id/til_country"
+        app:layout_constraintTop_toBottomOf="@id/til_country">
+
+        <EditText
+            android:id="@+id/et_head_quaters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:inputType="text"
+            android:textColor="@color/airline_detail_title"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/red"
+        android:text="@string/bottom_sheet_confirm_button"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/til_head_quaters"
+        app:layout_constraintStart_toStartOf="@+id/til_head_quaters"
+        app:layout_constraintTop_toBottomOf="@+id/til_head_quaters" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/white"
+        android:elevation="4dp"
+        android:shadowColor="@color/grey_700"
+        android:text="@string/bottom_sheet_cancel_button"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_confirm"
+        app:layout_constraintStart_toStartOf="@+id/btn_confirm"
+        app:layout_constraintTop_toBottomOf="@+id/btn_confirm" />
+</androidx.constraintlayout.widget.ConstraintLayout>

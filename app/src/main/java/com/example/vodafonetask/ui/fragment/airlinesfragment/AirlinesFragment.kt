@@ -44,6 +44,10 @@ class AirlinesFragment : Fragment() {
         setupRecyclerView()
         observeAirlinesList()
         observeNavigationEvent()
+
+        binding.fabAddAirline.setOnClickListener {
+            findNavController().navigate(AirlinesFragmentDirections.actionAirlinesFragmentToBottomSheetFragment())
+        }
     }
 
     private fun setupActionBar() {
@@ -108,8 +112,8 @@ class AirlinesFragment : Fragment() {
                     mAdapter.submitList(it)
                 }
             } else {
-                binding.rvAirlinesList.layoutManager?.scrollToPosition(0)
                 mAdapter.submitList(viewModel.airlineList.value)
+                binding.rvAirlinesList.layoutManager?.scrollToPosition(0)
             }
         }
 

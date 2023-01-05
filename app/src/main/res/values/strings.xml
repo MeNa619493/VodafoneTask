@@ -6,4 +6,11 @@
     <string name="search_hint">Search by airline name</string>
     <string name="headquarters">Headquarters</string>
     <string name="detail_fragment_button">Visit</string>
+    <string name="bottom_sheet_title">Add new airline</string>
+    <string name="lbl_name">Airline name</string>
+    <string name="lbl_slogan">Slogan</string>
+    <string name="lbl_country">Country</string>
+    <string name="lbl_head_quaters">Headquaters</string>
+    <string name="bottom_sheet_confirm_button">Confirm</string>
+    <string name="bottom_sheet_cancel_button">Cancel</string>
 </resources>
