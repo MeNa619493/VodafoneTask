@@ -13,4 +13,10 @@
     <string name="lbl_head_quaters">Headquaters</string>
     <string name="bottom_sheet_confirm_button">Confirm</string>
     <string name="bottom_sheet_cancel_button">Cancel</string>
+    <string name="established">Established</string>
+    <string name="hint_title_error">Please enter the title.</string>
+    <string name="hint_slogan_error">Please enter the slogan.</string>
+    <string name="hint_country_error">Please enter the country.</string>
+    <string name="hint_headquaters_error">Please enter the headquaters.</string>
+    <string name="hint_established_error">Please enter the established year.</string>
 </resources>

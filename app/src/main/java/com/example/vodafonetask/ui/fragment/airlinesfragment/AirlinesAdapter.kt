@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vodafonetask.databinding.AirlineItemBinding
-import com.example.vodafonetask.models.Airline
+import com.example.vodafonetask.models.AirLineEntity
 
-class AirlinesAdapter(private val clickListener: AirlineClickListener) : ListAdapter<Airline, AirlinesAdapter.MyViewHolder>(
+class AirlinesAdapter(private val clickListener: AirlineClickListener) : ListAdapter<AirLineEntity, AirlinesAdapter.MyViewHolder>(
     AirlineDiffCallback()
 ) {
 
     class MyViewHolder(private val binding: AirlineItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(airline: Airline, clickListener: AirlineClickListener) {
+        fun bind(airline: AirLineEntity, clickListener: AirlineClickListener) {
             binding.tvTittle.text = airline.name
             binding.airlineCardLayout.setOnClickListener {
                 clickListener.onClick(airline)
@@ -40,17 +40,17 @@ class AirlinesAdapter(private val clickListener: AirlineClickListener) : ListAda
         holder.bind(getItem(position), clickListener)
     }
 
-    class AirlineDiffCallback : DiffUtil.ItemCallback<Airline>() {
-        override fun areItemsTheSame(oldItem: Airline, newItem: Airline): Boolean {
+    class AirlineDiffCallback : DiffUtil.ItemCallback<AirLineEntity>() {
+        override fun areItemsTheSame(oldItem: AirLineEntity, newItem: AirLineEntity): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Airline, newItem: Airline): Boolean {
+        override fun areContentsTheSame(oldItem: AirLineEntity, newItem: AirLineEntity): Boolean {
             return oldItem == newItem
         }
     }
 
-    class AirlineClickListener(val clickListener: (airline: Airline) -> Unit) {
-        fun onClick(airline: Airline) = clickListener(airline)
+    class AirlineClickListener(val clickListener: (airline: AirLineEntity) -> Unit) {
+        fun onClick(airline: AirLineEntity) = clickListener(airline)
     }
 }

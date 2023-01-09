@@ -1,9 +1,8 @@
 package com.example.vodafonetask.ui.fragment.airlinesfragment
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.vodafonetask.data.Repository
-import com.example.vodafonetask.models.Airline
+import com.example.vodafonetask.models.AirLineEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -16,11 +15,11 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
         get() = _status
 
     private var _airlineList = repository.getAllAirlines().asLiveData(Dispatchers.IO)
-    val airlineList: LiveData<List<Airline>>
+    val airlineList: LiveData<List<AirLineEntity>>
         get() = _airlineList
 
-    private val _navigateToDetailFragmentEvent = MutableLiveData<Airline?>()
-    val navigateToDetailFragmentEvent: LiveData<Airline?>
+    private val _navigateToDetailFragmentEvent = MutableLiveData<AirLineEntity?>()
+    val navigateToDetailFragmentEvent: LiveData<AirLineEntity?>
         get() = _navigateToDetailFragmentEvent
 
     init {
@@ -33,7 +32,7 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun openDetailFragment(airline: Airline) {
+    fun openDetailFragment(airline: AirLineEntity) {
         _navigateToDetailFragmentEvent.value = airline
     }
 
@@ -41,7 +40,7 @@ class AirlinesViewModel(private val repository: Repository) : ViewModel() {
         _navigateToDetailFragmentEvent.value = null
     }
 
-    fun search(text: String): LiveData<List<Airline>> {
+    fun search(text: String): LiveData<List<AirLineEntity>> {
 
          val searchString = text.trim { it <= ' ' }
 

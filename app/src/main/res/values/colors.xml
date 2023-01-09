@@ -11,4 +11,7 @@
     <color name="background">#F4F4F4</color>
     <color name="airline_detail_title">#333333</color>
     <color name="grey_700">#cccccc</color>
+
+    <color name="colorSnackBarSuccess">#8BC34A</color>
+    <color name="colorSnackBarError">#F72400</color>
 </resources>

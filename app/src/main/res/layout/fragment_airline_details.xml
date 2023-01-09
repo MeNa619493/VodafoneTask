@@ -133,6 +133,7 @@
                 android:layout_marginBottom="20dp"
                 android:textSize="18sp"
                 android:textAllCaps="false"
+                android:background="@drawable/red_btn_background"
                 android:text="@string/detail_fragment_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

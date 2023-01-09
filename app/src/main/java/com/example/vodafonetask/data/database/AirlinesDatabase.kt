@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.vodafonetask.models.Airline
+import com.example.vodafonetask.models.AirLineEntity
 import com.example.vodafonetask.util.Constants
 
-@Database(entities = [Airline::class], version = 1, exportSchema = false)
+@Database(entities = [AirLineEntity::class], version = 1, exportSchema = false)
 abstract class AirlinesDatabase : RoomDatabase() {
 
     abstract val airlineDao: AirlinesDao
